@@ -27,6 +27,7 @@ const bookList = document.querySelector('.book-list');
 
 let books = [];
 
+// Function: save data to local storage
 const setData = () => {
   let book = {
     'title': title.value,
@@ -40,25 +41,44 @@ const setData = () => {
   }
 };
 
-let localData = JSON.parse(localStorage.getItem('bookList'))
+// Get local data
+let localData = JSON.parse(localStorage.getItem('bookList'));
 
+// On submit
 form.onsubmit = (e) => {
   //e.preventDefault();
   
   setData();
-  localData = JSON.parse(localStorage.getItem('bookList'))
-  addBooks()
+  localData = JSON.parse(localStorage.getItem('bookList'));
+  addBooks();
+  console.log(localData);
 };
 
-let addBooks =()=>{
+// Function: Add books to html
+let addBooks = () => {
+  bookList.innerHTML = ``;
+
   localData.forEach(el => {
     bookList.innerHTML += `<div>
-    <p>${el.author}</p>
     <p>${el.title}</p>
-    <button>Remove</button>
+    <p>${el.author}</p>
+    <button id="${el.title}" class="remove">Remove</button>
     </div>`
-    
   });
 }
-addBooks()
-console.log(localData)
+
+addBooks();
+
+const button = document.querySelectorAll('.remove');
+
+button.forEach((el) => el.addEventListener('click', (e) => {
+  // localData = localData.filter(book => book.title === e.target.id);
+
+  if (isStorageAvailable('localStorage')) {
+    localStorage.setItem('bookList', JSON.stringify(books.filter(book => book.title === e.target.id)));
+  }
+
+  console.log(localData);
+  // location.reload();
+  addBooks();
+}));
