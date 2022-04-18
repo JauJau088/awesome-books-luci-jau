@@ -11,20 +11,24 @@
 		<h1>Awesome Books</h1>
 	</header>
 	<main class="main">
-		<section class="book-list"></section>
+		<section class="book-list">
+			<!-- Add the items dynamically in js -->
+		</section>
 		<section class="add-book">
-			<form action="#" class="form">
+			<form action="#" id="form-add-book" class="form">
 				<div class="input-container">
-				<input type="text" placeholder="Title" required>
+					<input id="book-title" type="text" placeholder="Title" required>
 				</div>
 				<br>
 				<div class="input-container">
-				<input type="text" placeholder="Author" required>
+					<input id="book-author" type="text" placeholder="Author" required>
 				</div>
 				<br>
 				<button type="submit">Add</button>
 			</form>
 		</section>
 	</main>
+
+	<script src="script.js"></script>
 </body>
 </html>
