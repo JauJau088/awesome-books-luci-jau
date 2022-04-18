@@ -19,16 +19,25 @@ function isStorageAvailable(type) {
   }
 }
 
-//
+// Book add and remove
 const title = document.querySelector('#book-title');
 const author = document.querySelector('#book-author');
 const form = document.querySelector('#form-add-book');
 const bookList = document.querySelector('.book-list');
 
+// Create a variable to contain local data
 let books = [];
+// If there's local data available,
+if (isStorageAvailable('localStorage')) {
+  const data = JSON.parse(localStorage.getItem('bookList'));
+  // and if it's not empty, update it
+  if (data) {
+    books = JSON.parse(localStorage.getItem('bookList'));
+  }
+}
 
-// Function: save data to local storage
-const setData = () => {
+// Function: Add a book to local storage
+const addBook = () => {
   let book = {
     'title': title.value,
     'author': author.value,
@@ -41,44 +50,36 @@ const setData = () => {
   }
 };
 
-// Get local data
-let localData = JSON.parse(localStorage.getItem('bookList'));
-
-// On submit
-form.onsubmit = (e) => {
-  //e.preventDefault();
-  
-  setData();
-  localData = JSON.parse(localStorage.getItem('bookList'));
-  addBooks();
-  console.log(localData);
-};
-
-// Function: Add books to html
-let addBooks = () => {
+// Function: Update html book list
+const updateBookList = () => {
   bookList.innerHTML = ``;
 
-  localData.forEach(el => {
+  books.forEach(el => {
     bookList.innerHTML += `<div>
     <p>${el.title}</p>
     <p>${el.author}</p>
-    <button id="${el.title}" class="remove">Remove</button>
+    <button id="${el.title}" onclick="remove('${el.title}')">Remove</button>
     </div>`
   });
 }
 
-addBooks();
+// Function: Remove
+const remove = (title) => {
+  books = books.filter(book => book.title !== title);
 
-const button = document.querySelectorAll('.remove');
+  localStorage.setItem('bookList', JSON.stringify(books));
+  updateBookList();
+}
 
-button.forEach((el) => el.addEventListener('click', (e) => {
-  // localData = localData.filter(book => book.title === e.target.id);
+// On submit
+form.onsubmit = () => {
+  // Add the book
+  addBook();
+  // Update the html
+  updateBookList();
+  // Reset form
+  form.reset();
+};
 
-  if (isStorageAvailable('localStorage')) {
-    localStorage.setItem('bookList', JSON.stringify(books.filter(book => book.title === e.target.id)));
-  }
-
-  console.log(localData);
-  // location.reload();
-  addBooks();
-}));
+// Don't forget to call the function when the page loads as well
+updateBookList();
