@@ -40,8 +40,25 @@ const setData = () => {
   }
 };
 
+let localData = JSON.parse(localStorage.getItem('bookList'))
+
 form.onsubmit = (e) => {
-  e.preventDefault();
+  //e.preventDefault();
   
   setData();
+  localData = JSON.parse(localStorage.getItem('bookList'))
+  addBooks()
 };
+
+let addBooks =()=>{
+  localData.forEach(el => {
+    bookList.innerHTML += `<div>
+    <p>${el.author}</p>
+    <p>${el.title}</p>
+    <button>Remove</button>
+    </div>`
+    
+  });
+}
+addBooks()
+console.log(localData)
