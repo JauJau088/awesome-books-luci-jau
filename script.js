@@ -27,41 +27,40 @@ const bookList = document.querySelector('.book-list');
 
 // Create classes
 class Bookshelf {
-  constructor(books){
-    this.books = books
+  constructor(books) {
+    this.books = books;
   }
 
-  addBook(title, author){
+  addBook(title, author) {
     const book = {
       id: Math.floor(Math.random() * 1000000),
       title: title.value,
       author: author.value,
-    }
+    };
+
     this.books.push(book);
+
     if (isStorageAvailable('localStorage')) {
       localStorage.setItem('bookList', JSON.stringify(this.books));
     }
   }
 
-  remove(id){
+  remove(id) {
     this.books = this.books.filter((book) => book.id !== parseInt(id, 10));
     localStorage.setItem('bookList', JSON.stringify(this.books));
-    this.updateBookList()
+    this.updateBookList();
   }
 
-  updateBookList(){
+  updateBookList() {
     bookList.innerHTML = '';
-  
+
     this.books.forEach((el) => {
       bookList.innerHTML += `<div>
-      <p>${el.title}</p>
-      <p>${el.author}</p>
+      <p>"${el.title}" by ${el.author}</p>
       <button id="${el.title}" onclick="remove('${el.id}')">Remove</button>
-      <hr>
       </div>`;
     });
-  };
-  
+  }
 }
 
 // Create a variable to contain local data
@@ -74,8 +73,6 @@ if (isStorageAvailable('localStorage')) {
     books = JSON.parse(localStorage.getItem('bookList'));
   }
 }
-
-
 
 const newbook = new Bookshelf(books);
 // On submit
@@ -91,8 +88,6 @@ form.onsubmit = () => {
 // Don't forget to call the function when the page loads as well
 newbook.updateBookList();
 
-
-
-const remove= (id)=>{
-  newbook.remove(id)
-}
+const remove = (id) => {
+  newbook.remove(id);
+};
