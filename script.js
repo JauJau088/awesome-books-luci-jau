@@ -25,6 +25,28 @@ const author = document.querySelector('#book-author');
 const form = document.querySelector('#form-add-book');
 const bookList = document.querySelector('.book-list');
 
+// Create classes
+class Bookshelf {
+  constructor(books){
+    this.books = books
+  }
+
+  addBook(title, author){
+    const book = {
+      id: Math.floor(Math.random() * 1000000),
+      title: title.value,
+      author: author.value,
+    }
+    this.books.push(book);
+    if (isStorageAvailable('localStorage')) {
+      localStorage.setItem('bookList', JSON.stringify(books));
+    }
+  }
+}
+
+
+
+
 // Create a variable to contain local data
 let books = [];
 // If there's local data available,
@@ -36,20 +58,10 @@ if (isStorageAvailable('localStorage')) {
   }
 }
 
+
+
 // Function: Add a book to local storage
-const addBook = () => {
-  const book = {
-    id: Math.floor(Math.random() * 1000000),
-    title: title.value,
-    author: author.value,
-  };
 
-  books.push(book);
-
-  if (isStorageAvailable('localStorage')) {
-    localStorage.setItem('bookList', JSON.stringify(books));
-  }
-};
 
 // Function: Update html book list
 const updateBookList = () => {
@@ -76,7 +88,7 @@ const remove = (id) => {
 // On submit
 form.onsubmit = () => {
   // Add the book
-  addBook();
+  newbook.addBook(title, author);
   // Update the html
   updateBookList();
   // Reset form
@@ -85,3 +97,6 @@ form.onsubmit = () => {
 
 // Don't forget to call the function when the page loads as well
 updateBookList();
+
+
+const newbook = new Bookshelf(books);
