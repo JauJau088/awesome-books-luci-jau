@@ -39,6 +39,7 @@ if (isStorageAvailable('localStorage')) {
 // Function: Add a book to local storage
 const addBook = () => {
   let book = {
+    "id": Math.floor(Math.random()*1000000),
     'title': title.value,
     'author': author.value,
   };
@@ -58,14 +59,15 @@ const updateBookList = () => {
     bookList.innerHTML += `<div>
     <p>${el.title}</p>
     <p>${el.author}</p>
-    <button id="${el.title}" onclick="remove('${el.title}')">Remove</button>
+    <button id="${el.title}" onclick="remove('${el.id}')">Remove</button>
+    <hr>
     </div>`
   });
 }
 
 // Function: Remove
-const remove = (title) => {
-  books = books.filter(book => book.title !== title);
+const remove = (id) => {
+  books = books.filter(book => book.id != id);
 
   localStorage.setItem('bookList', JSON.stringify(books));
   updateBookList();
