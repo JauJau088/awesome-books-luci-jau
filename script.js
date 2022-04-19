@@ -25,6 +25,44 @@ const author = document.querySelector('#book-author');
 const form = document.querySelector('#form-add-book');
 const bookList = document.querySelector('.book-list');
 
+// Create classes
+class Bookshelf {
+  constructor(books) {
+    this.books = books;
+  }
+
+  addBook(title, author) {
+    const book = {
+      id: Math.floor(Math.random() * 1000000),
+      title: title.value,
+      author: author.value,
+    };
+
+    this.books.push(book);
+
+    if (isStorageAvailable('localStorage')) {
+      localStorage.setItem('bookList', JSON.stringify(this.books));
+    }
+  }
+
+  remove(id) {
+    this.books = this.books.filter((book) => book.id !== parseInt(id, 10));
+    localStorage.setItem('bookList', JSON.stringify(this.books));
+    this.updateBookList();
+  }
+
+  updateBookList() {
+    bookList.innerHTML = '';
+
+    this.books.forEach((el) => {
+      bookList.innerHTML += `<div>
+      <p>"${el.title}" by ${el.author}</p>
+      <button id="${el.title}" onclick="remove('${el.id}')">Remove</button>
+      </div>`;
+    });
+  }
+}
+
 // Create a variable to contain local data
 let books = [];
 // If there's local data available,
@@ -36,52 +74,20 @@ if (isStorageAvailable('localStorage')) {
   }
 }
 
-// Function: Add a book to local storage
-const addBook = () => {
-  const book = {
-    id: Math.floor(Math.random() * 1000000),
-    title: title.value,
-    author: author.value,
-  };
-
-  books.push(book);
-
-  if (isStorageAvailable('localStorage')) {
-    localStorage.setItem('bookList', JSON.stringify(books));
-  }
-};
-
-// Function: Update html book list
-const updateBookList = () => {
-  bookList.innerHTML = '';
-
-  books.forEach((el) => {
-    bookList.innerHTML += `<div>
-    <p>${el.title}</p>
-    <p>${el.author}</p>
-    <button id="${el.title}" onclick="remove('${el.id}')">Remove</button>
-    <hr>
-    </div>`;
-  });
-};
-
-// Function: Remove
-const remove = (id) => {
-  books = books.filter((book) => book.id !== parseInt(id, 10));
-
-  localStorage.setItem('bookList', JSON.stringify(books));
-  updateBookList();
-};
-
+const newbook = new Bookshelf(books);
 // On submit
 form.onsubmit = () => {
   // Add the book
-  addBook();
+  newbook.addBook(title, author);
   // Update the html
-  updateBookList();
+  newbook.updateBookList();
   // Reset form
   form.reset();
 };
 
 // Don't forget to call the function when the page loads as well
-updateBookList();
+newbook.updateBookList();
+
+const remove = (id) => {
+  newbook.remove(id);
+};
