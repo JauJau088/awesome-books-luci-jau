@@ -39,13 +39,30 @@ class Bookshelf {
     }
     this.books.push(book);
     if (isStorageAvailable('localStorage')) {
-      localStorage.setItem('bookList', JSON.stringify(books));
+      localStorage.setItem('bookList', JSON.stringify(this.books));
     }
   }
+
+  remove(id){
+    this.books = this.books.filter((book) => book.id !== parseInt(id, 10));
+    localStorage.setItem('bookList', JSON.stringify(this.books));
+    this.updateBookList()
+  }
+
+  updateBookList(){
+    bookList.innerHTML = '';
+  
+    this.books.forEach((el) => {
+      bookList.innerHTML += `<div>
+      <p>${el.title}</p>
+      <p>${el.author}</p>
+      <button id="${el.title}" onclick="remove('${el.id}')">Remove</button>
+      <hr>
+      </div>`;
+    });
+  };
+  
 }
-
-
-
 
 // Create a variable to contain local data
 let books = [];
@@ -60,43 +77,22 @@ if (isStorageAvailable('localStorage')) {
 
 
 
-// Function: Add a book to local storage
-
-
-// Function: Update html book list
-const updateBookList = () => {
-  bookList.innerHTML = '';
-
-  books.forEach((el) => {
-    bookList.innerHTML += `<div>
-    <p>${el.title}</p>
-    <p>${el.author}</p>
-    <button id="${el.title}" onclick="remove('${el.id}')">Remove</button>
-    <hr>
-    </div>`;
-  });
-};
-
-// Function: Remove
-const remove = (id) => {
-  books = books.filter((book) => book.id !== parseInt(id, 10));
-
-  localStorage.setItem('bookList', JSON.stringify(books));
-  updateBookList();
-};
-
+const newbook = new Bookshelf(books);
 // On submit
 form.onsubmit = () => {
   // Add the book
   newbook.addBook(title, author);
   // Update the html
-  updateBookList();
+  newbook.updateBookList();
   // Reset form
   form.reset();
 };
 
 // Don't forget to call the function when the page loads as well
-updateBookList();
+newbook.updateBookList();
 
 
-const newbook = new Bookshelf(books);
+
+const remove= (id)=>{
+  newbook.remove(id)
+}
