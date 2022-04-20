@@ -56,8 +56,8 @@ class Bookshelf {
 
     this.books.forEach((el) => {
       bookList.innerHTML += `<div>
-      <p>"${el.title}" by ${el.author}</p>
-      <button id="${el.title}" onclick="remove('${el.id}')">Remove</button>
+      <p>"<span class="title">${el.title}</span>" by <span class="author">${el.author}</span></p>
+      <button id="${el.title}" onclick="remove('${el.id}')" class="remove">Remove</button>
       </div>`;
     });
   }
