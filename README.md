@@ -4,6 +4,8 @@
 
 > "Awesome books" is a simple website that displays a list of books and allows you to add and remove books from that list.
 
+![screenshot](./app_screenshot.png)
+
 # Project requirements
 
 - Create class methods to add and remove books.
@@ -47,9 +49,9 @@ Having a web browser, code editor and git.
 
 👤 **Jauhari Alafi**
 
-- GitHub: [@githubhandle](https://github.com/JauJau088)
-- Twitter: [@twitterhandle](https://twitter.com/jaujauj)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/jauhari-alafi-7295b821a/)
+- GitHub: [@JauJau088](https://github.com/JauJau088) 
+- Twitter: [@jaujauj](https://twitter.com/jaujauj) 
+- LinkedIn: [Jauhari Alafi](https://linkedin.com/in/jauhari-alafi-7295b821a/) 
 
 👤 **Lusindiso Ntanjana**
 
