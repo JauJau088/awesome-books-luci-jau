@@ -31,9 +31,9 @@
 - Git & Gitflow
 - Javascript
 
-## Live Demo (if available)
+## Live Demo
 
-[Live Demo Link](https://livedemo.com)
+[Live Demo](https://jaujau088.github.io/awesome-books-luci-jau-joy/)
 
 
 ## Getting Started
@@ -45,17 +45,17 @@ Having a web browser, code editor and git.
 
 ## Authors
 
-👤 **Author1**
+👤 **Jauhari Alafi**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@githubhandle](https://github.com/JauJau088)
+- Twitter: [@twitterhandle](https://twitter.com/jaujauj)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/jauhari-alafi-7295b821a/)
 
-👤 **Author2**
+👤 **Lusindiso Ntanjana**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@Lusindiso](https://github.com/Lusindiso)
+- Twitter: [@LusindisoNt](https://twitter.com/LusindisoNt)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/lusindisontanjana/)
 
 👤 **Joy Kwamboka**
 
