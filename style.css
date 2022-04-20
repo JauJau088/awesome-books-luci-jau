@@ -69,7 +69,9 @@ a {
 .main {
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+.hide {
+  display: none !important;
 }
 
 .book-list {
@@ -101,6 +103,23 @@ a {
 
 .form button {
   align-self: flex-end;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.contact-list {
+  margin-left: 2rem;
 }
 
 .footer {
