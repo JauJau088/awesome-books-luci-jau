@@ -53,6 +53,11 @@ a {
 
 .nav-link {
   color: black;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: slateblue;
 }
 
 .header {
@@ -78,10 +83,6 @@ a {
   min-height: 440px;
 }
 
-.remove {
-  padding: ;
-}
-
 .hide {
   display: none !important;
 }
@@ -102,7 +103,7 @@ a {
   background-color: grey;
 }
 
-.add-book{
+.add-book {
   max-width: 700px;
   margin: 0 auto;
   min-height: 300px;
@@ -113,14 +114,13 @@ a {
   text-transform: capitalize;
 }
 
-
 .form {
   display: flex;
   flex-direction: column;
 }
 
-.input-container{
-  width: 400px
+.input-container {
+  width: 400px;
 }
 
 input {
@@ -130,20 +130,22 @@ input {
 }
 
 input::-webkit-input-placeholder {
-  color:black
+  color: black;
 }
 
-.form button, .remove {
+.form button,
+.remove {
   align-self: flex-end;
   padding: 8px 20px;
   font-size: 17px;
   border: 2px solid black;
-  box-shadow: 5px 7px 5px rgba(0,0,0, 1);
+  box-shadow: 5px 7px 5px rgba(0, 0, 0, 1);
   transition: box-shadow 0.2s;
 }
 
-.form button:active, .remove:active{
-  box-shadow: 2px 2px 2px rgba(0,0,0, 0.8);
+.form button:active,
+.remove:active {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
 }
 
 .contact {
@@ -154,11 +156,13 @@ input::-webkit-input-placeholder {
   max-width: 500px;
   margin: 0 auto;
 }
+
 h2 {
   text-align: center;
   font-size: 2rem;
   margin-bottom: 2rem;
 }
+
 .contact-list {
   margin-left: 2rem;
 }
