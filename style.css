@@ -1,7 +1,61 @@
 /* CSS here */
-p {
+*,
+*::before,
+*::after {
+  padding: 0;
   margin: 0;
+  box-sizing: inherit;
 }
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+a {
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  border: 3px solid black;
+  margin: 10px auto 0 auto;
+  padding: 10px 15px;
+}
+
+.logo  a{
+  color: black;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-list>*:not(:last-child){
+  border-right: 2px solid black;
+}
+
+.nav-item{
+  padding: 15px 10px;
+}
+
+.nav-link {
+  color:black
+}
+
 
 .header {
   display: flex;
@@ -43,4 +97,14 @@ p {
 
 .form button {
   align-self: flex-end;
+}
+
+
+.footer {
+  border: 3px solid black;
+  margin: 0 auto 15px auto;
+  width: 100%;
+  max-width: 1100px;
+  padding: 15px;
+  justify-self: flex-end;
 }
